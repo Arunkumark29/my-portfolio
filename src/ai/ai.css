@@ -218,26 +218,36 @@
   border-radius: 3px;
 }
 
-/* --- MOBILE --- */
+/* --- MOBILE RESPONSIVENESS (FIXED) --- */
 @media (max-width: 768px) {
+  
+  /* 1. PANEL: Bottom Sheet Style */
   .ai-panel {
     width: 100%;
-    right: 0;
+    left: 0;
     bottom: 0;
-    border-radius: 12px 12px 0 0;
-    height: 60vh;
-    z-index: 201; /* Ensure panel is above everything */
+    height: 60vh; /* 60% Height */
+    border-radius: 16px 16px 0 0;
+    z-index: 205; /* Very High */
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  /* Minimized state on mobile */
+  .ai-panel.minimized {
+     height: 60px !important;
+     bottom: 0;
   }
 
-  /* MOVE TRIGGER BUTTON UP */
+  /* 2. TRIGGER BUTTON: Fixed at Bottom Right */
   .ai-trigger {
-    right: 1rem;
-    /* Move it up 85px to clear the Chain Navigation bar */
-    bottom: 85px; 
+    right: 1.5rem;
+    bottom: 2rem; /* Keeps it in standard thumb position */
+    z-index: 210; /* HIGHEST: Always clickable above panel */
     
-    /* Make it slightly smaller on mobile to save space */
-    width: 50px; 
+    /* Slightly smaller for mobile */
+    width: 50px;
     height: 50px;
-    font-size: 0.8rem;
   }
 }

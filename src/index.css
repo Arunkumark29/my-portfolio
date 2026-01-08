@@ -21,27 +21,32 @@ html, body {
   min-height: 100vh;
 }
 
-/* --- 2. LAPTOP SCALING FIX (The "Defaulty Big" Fix) --- */
-@media (max-width: 1440px) {
+/* --- LAPTOP SCALING FIX (Aggressive) --- */
+
+/* Standard 15" Laptops */
+@media (max-width: 1536px) {
   html {
-    font-size: 14px; /* Scales everything down 12.5% */
+    font-size: 14px; 
   }
 }
 
-@media (max-width: 1280px) {
+/* 13" - 14" Laptops (The problem zone) */
+@media (max-width: 1366px) {
   html {
-    font-size: 13px; /* Scales down further for small laptops */
+    font-size: 12px; /* Aggressive scale down */
   }
 }
 
-/* --- 3. MOBILE SPACER FIX (The "Hidden Buttons" Fix) --- */
+/* Small Netbooks / Tablets in Landscape */
+@media (max-width: 1024px) {
+  html {
+    font-size: 11px; /* Maximum shrinkage */
+  }
+}
+
+/* Reset for Mobile (Phones need big text) */
 @media (max-width: 768px) {
-  /* Adds invisible cushion at the bottom so Nav doesn't cover content */
-  .projects-container, 
-  .experience-container, 
-  .contact-content, 
-  .about-container, 
-  .skills-container {
-    padding-bottom: 120px !important; /* Increased slightly for safety */
+  html {
+    font-size: 16px; 
   }
 }

@@ -23,12 +23,12 @@ const AIAssistant = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isOpen]);
 
-  // Icon Loop Animation
+  // Icon Loop Animation (4 Seconds)
   useEffect(() => {
     const interval = setInterval(() => {
       // Toggle between Text "AI" and Face "▀ ▀"
       setIconText(prev => prev === "AI" ? "▀ ▀" : "AI");
-    }, 4000); // CHANGED: Increased to 4000ms (4 seconds) for a slower loop
+    }, 4000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -53,12 +53,23 @@ const AIAssistant = () => {
     if (e.key === 'Enter') handleSend();
   };
 
+  // --- LOGIC FIX: Handles Closing vs Minimizing Correctly ---
   const toggleOpen = () => {
-    if (isOpen && !isMinimized) {
-      setIsOpen(false); 
-    } else {
+    // If open...
+    if (isOpen) {
+      // If currently minimized -> Restore it
+      if (isMinimized) {
+        setIsMinimized(false);
+      } 
+      // If fully open -> Close it
+      else {
+        setIsOpen(false);
+      }
+    } 
+    // If closed -> Open it
+    else {
       setIsOpen(true);
-      setIsMinimized(false); 
+      setIsMinimized(false);
     }
   };
 
