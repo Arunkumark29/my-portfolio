@@ -1,0 +1,14 @@
+/* In App.css */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents default scrollbar, relying on our JS logic */
+  background-color: #0a0a0a; /* Matches your dark theme */
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}

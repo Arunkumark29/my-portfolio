@@ -11,3 +11,12 @@ html, body, #root {
   color: #fff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+/* GLOBAL RESET: Prevents horizontal scroll from entrance animations */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* Ensure background matches your darkest theme color */
+  background-color: #050505; 
+}

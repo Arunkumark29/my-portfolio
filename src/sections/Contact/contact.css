@@ -1,0 +1,164 @@
+/* src/sections/Contact/contact.css */
+
+/* --- CONTAINER --- */
+.contact-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #050505; /* Deep Polished Black */
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+
+.contact-content {
+  text-align: center;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+/* --- TITLE: Shake & Fit Animation --- */
+.contact-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  
+  /* Gold-to-Pink Gradient */
+  background: linear-gradient(135deg, #FFD700 20%, #FF1493 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* FIX: Ensure Opacity starts at 0 */
+  opacity: 0; 
+  /* Run animation and FREEZE at the end state (forwards) */
+  animation: shakeEntry 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* --- TEXT: Pure White & Glowing --- */
+.contact-text {
+  font-size: 1.2rem;
+  color: #FFFFFF;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  
+  opacity: 0;
+  animation: fadeInText 1s ease forwards 0.5s; /* 0.5s delay */
+}
+
+/* --- BUTTON CONTAINER --- */
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* --- BUTTONS: The Blast Effect --- */
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 3rem;
+  border-radius: 50px;
+  
+  /* Initial State */
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+  
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  text-transform: uppercase;
+  
+  /* Pre-Animation State */
+  opacity: 0;
+  transform: scale(0); 
+}
+
+/* APPLY BLAST ANIMATION */
+.blast-effect {
+  animation: blastEntry 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* HOVER STATE */
+.contact-btn:hover {
+  background: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); 
+  transform: translateY(-5px);
+}
+
+/* --- ANIMATIONS (FIXED) --- */
+
+/* 1. SHAKE & FIT (Fixed Opacity Logic) */
+@keyframes shakeEntry {
+  0% {
+    opacity: 0;
+    transform: scale(1.5) translateX(-10px);
+    filter: blur(10px);
+  }
+  20% {
+    opacity: 1; /* Becomes visible here */
+    transform: scale(1) translateX(10px);
+  }
+  40% { transform: translateX(-5px); }
+  60% { transform: translateX(5px); }
+  80% { transform: translateX(-2px); }
+  
+  /* CRITICAL FIX: Explicitly set opacity 1 at the end */
+  100% { 
+    opacity: 1; 
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 2. BLAST ENTRY */
+@keyframes blastEntry {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4); 
+    box-shadow: 0 0 50px rgba(255, 255, 255, 1);
+    border-color: #FFD700;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* 3. Text Fade In */
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .contact-title { font-size: 2.5rem; }
+  .contact-text { font-size: 1rem; }
+  .contact-btn { padding: 1rem 2rem; min-width: 140px; }
+}

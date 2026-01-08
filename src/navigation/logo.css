@@ -1,0 +1,84 @@
+/* src/navigation/logo.css */
+
+.system-logo {
+  position: fixed;
+  top: 2rem;
+  left: 3rem; /* Aligns with Chain Navigation */
+  z-index: 1000;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-wrapper {
+  display: flex;
+  overflow: visible; /* Allows letters to fly in from outside */
+}
+
+.logo-char {
+  display: inline-block;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 800; /* Extra Bold */
+  font-size: 1.5rem; 
+  letter-spacing: 1px;
+  
+  /* --- THEME: Half White (Top) / Half Pink (Bottom) --- */
+  background: linear-gradient(180deg, #FFFFFF 40%, #FF1493 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Make text transparent so the gradient shows through */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* --- ANIMATION SETUP --- */
+  opacity: 0;
+  /* Start at random position defined in React */
+  transform: translate(var(--x), var(--y)) scale(1.5);
+  
+  /* Start blurred */
+  filter: blur(8px);
+  
+  animation: logoGather 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* THE FLYING ANIMATION */
+@keyframes logoGather {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(1.5);
+    /* No glow while flying */
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    
+    /* --- REDUCED GLOW (Final State) --- */
+    /* Clear blur + Subtle Pink Shadow */
+    filter: blur(0) drop-shadow(0 2px 5px rgba(255, 20, 147, 0.4));
+  }
+}
+
+/* HOVER EFFECT */
+.system-logo:hover .logo-char {
+  /* On hover, switch to Gold Gradient */
+  background: linear-gradient(180deg, #FFFFFF 40%, #FFD700 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Subtle Gold Glow */
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .system-logo {
+    left: 1.5rem;
+    top: 1.5rem;
+  }
+  
+  .logo-char {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,180 @@
+/* src/sections/Home/home.css */
+
+/* --- CORE LAYOUT --- */
+.home-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #050505; /* Deep Polished Black */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.home-content {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Visual adjustment: Nudge slightly up */
+  padding-bottom: 5vh;
+}
+
+/* --- 1. THE NAME (Polished Yellow & Pink Gradient) --- */
+.name-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+  
+  /* TYPOGRAPHY */
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 800; /* Extra Bold */
+  font-size: 4.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+
+  /* THE GRADIENT MAGIC (White -> Pink) */
+  /* Starts pure white, transitions to deep pink */
+  background: linear-gradient(135deg, #FFFFFF 25%, #FF1493 75%); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Important: Text fill must be transparent for gradient to show */
+  -webkit-text-fill-color: transparent; 
+  color: transparent;
+  
+  /* The Shine/Glow - A mix of white and pink light */
+  filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.5));
+}
+
+/* Individual Letter Animation */
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(var(--startX), var(--startY)) scale(0.8);
+  filter: blur(10px);
+  
+  /* Animation Physics */
+  transition: 
+    transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1.5s ease-out,
+    filter 1.5s ease-out;
+  
+  /* Ensure gradient passes through */
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  will-change: transform, opacity;
+}
+
+/* Trigger State: Assembled */
+.name-container.assembled .letter {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* --- 2. IDENTITY (Polished Shining White) --- */
+.identity-line {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease-out 0.8s, transform 1.2s ease-out 0.8s;
+}
+
+.identity-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.shiny-text {
+  color: #FFFFFF;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* The "Shining" Effect */
+  letter-spacing: 0.05em;
+}
+
+.separator {
+  color: #555; /* Polished Gray */
+  font-weight: 300;
+}
+
+/* --- 3. HINT (Polished Stylish Gray) --- */
+.interaction-hint {
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
+  text-align: center;
+  
+  /* Layout & Transition */
+  opacity: 0;
+  transition: opacity 1.5s ease 1.5s;
+  pointer-events: none;
+}
+
+.hint-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;       /* Slightly larger */
+  font-weight: 700;        /* Bold for readability */
+  letter-spacing: 0.2em;   /* Wide spacing looks cinematic */
+  text-transform: uppercase;
+
+  /* BRIGHT GRADIENT (White to Silver) - High Contrast */
+  background: linear-gradient(to bottom, #FFFFFF 30%, #999999 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Transparent fill lets gradient show, but we add a glow filter */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* The "pop" factor: White Glow */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.interaction-hint.visible {
+  opacity: 1;
+  /* Pulse animation keeps it alive */
+  animation: brightPulse 3s infinite ease-in-out;
+}
+
+/* Pulse stays bright (never goes too dark) */
+@keyframes brightPulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
+  }
+}
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .name-container {
+    font-size: 2.8rem; /* Smaller on mobile */
+  }
+  
+  .identity-line {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .separator {
+    display: none;
+  }
+}

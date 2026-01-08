@@ -1,0 +1,190 @@
+/* src/sections/Resume/resume.css */
+
+/* --- CONTAINER --- */
+.resume-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #050505; /* Deep Polished Black */
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 10;
+}
+
+.resume-content {
+  width: 100%;
+  max-width: 900px;
+  height: 90vh; /* Full height available */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  opacity: 0;
+  animation: fadeInResume 0.8s ease-out forwards;
+}
+
+/* --- TEXT STYLES --- */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  
+  /* Gold-to-Pink Gradient */
+  background: linear-gradient(135deg, #FFD700 20%, #FF1493 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.3));
+}
+
+.resume-desc {
+  color: #FFFFFF; /* Pure White */
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.last-updated {
+  display: block;
+  text-align: center;
+  font-family: monospace;
+  color: #FFD700; /* Gold */
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+/* --- BUTTON --- */
+.resume-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.download-btn:hover {
+  background: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* --- PDF VIEWER WRAPPER (THE MAGIC PART) --- */
+.pdf-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* Hides scanline outside */
+  border-radius: 8px;
+  
+  /* THE MAGICAL ANIMATION: Grows from top */
+  transform-origin: top;
+  animation: hologramGrow 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: 0.3s;
+  opacity: 0; /* Starts hidden */
+  
+  /* THE BORDER: Gradient Gold/Pink */
+  padding: 2px; /* Acts as border width */
+  background: linear-gradient(180deg, #FFD700, #FF1493);
+  
+  /* The Glow around the border */
+  box-shadow: 0 0 20px rgba(255, 20, 147, 0.2);
+}
+
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #151515; /* Dark background inside frame */
+  border-radius: 6px; /* Slightly less than wrapper */
+}
+
+/* --- SCAN LINE EFFECT --- */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  z-index: 5;
+  pointer-events: none;
+  animation: scanDown 2s linear infinite;
+  opacity: 0.3;
+}
+
+/* --- ANIMATIONS --- */
+
+/* 1. Fade in the whole section */
+@keyframes fadeInResume {
+  to { opacity: 1; }
+}
+
+/* 2. The Hologram Growth (Height 0 -> 100%) */
+@keyframes hologramGrow {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); /* Flash start */
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.2); /* Settled glow */
+  }
+}
+
+/* 3. Scan line moving down */
+@keyframes scanDown {
+  0% { top: -10%; opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  100% { top: 110%; opacity: 0; }
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  /* On mobile, usually better to hide iframe and rely on download button,
+     or show a simplified view. Keeping it hidden for layout safety. */
+  .pdf-wrapper { 
+    display: none; 
+  }
+  
+  .resume-content { 
+    height: auto; 
+    justify-content: center;
+    padding-top: 20vh;
+  }
+  
+  .resume-desc::after {
+    content: " (Viewer optimized for Desktop)";
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+}

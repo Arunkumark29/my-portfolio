@@ -1,0 +1,234 @@
+/* src/ai/ai.css */
+
+/* --- FLOATING TRIGGER BUTTON --- */
+.ai-trigger {
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem; 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  
+  /* Dark Glass Background */
+  background: rgba(10, 10, 10, 0.9);
+  
+  /* Gradient Border */
+  border: 2px solid transparent;
+  background-image: linear-gradient(#000, #000), 
+                    linear-gradient(135deg, #FFD700, #FF1493);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  color: #FFFFFF;
+  cursor: pointer;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-family: monospace;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  
+  /* Glow */
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
+}
+
+.ai-trigger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); /* Gold Glow on hover */
+}
+
+/* Icon Text Animation */
+.ai-icon-text {
+  animation: iconSwitch 0.9s ease-in-out;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+@keyframes iconSwitch {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* --- THE PANEL --- */
+.ai-panel {
+  position: fixed;
+  bottom: 6rem;
+  right: 3rem;
+  width: 400px;
+  height: 600px;
+  
+  /* Deep Black Background */
+  background: rgba(5, 5, 5, 0.95);
+  
+  /* Polished Border */
+  border: 1px solid rgba(255, 215, 0, 0.3); /* Gold Tint */
+  border-radius: 12px;
+  
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  
+  /* Resize capability */
+  resize: both;
+  overflow: hidden;
+  min-width: 300px;
+  min-height: 100px;
+  max-width: 90vw;
+  max-height: 80vh;
+
+  /* Entry Animation */
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.ai-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.ai-panel.minimized {
+  height: 50px !important;
+  resize: none;
+  overflow: hidden;
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- HEADER --- */
+.ai-header {
+  padding: 0.8rem 1rem;
+  background: rgba(20, 20, 20, 0.9);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2); /* Gold Line */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ai-title {
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  
+  /* Gradient Text */
+  background: linear-gradient(to right, #FFD700, #FF1493);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* --- CHAT AREA --- */
+.ai-messages {
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: #000;
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 85%;
+  position: relative;
+}
+
+/* User Bubble: White */
+.message.user {
+  align-self: flex-end;
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 500;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* AI Bubble: Transparent with Gold Border */
+.message.ai {
+  align-self: flex-start;
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.05);
+}
+
+/* --- INPUT AREA --- */
+.ai-input-area {
+  padding: 1rem;
+  background: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 0.8rem;
+}
+
+.ai-input {
+  flex-grow: 1;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.8rem;
+  color: #fff;
+  font-family: monospace;
+  font-size: 0.9rem;
+  transition: border 0.3s;
+}
+
+.ai-input:focus {
+  outline: none;
+  border-color: #FFD700; /* Gold Focus */
+}
+
+.ai-send-btn {
+  background: #FFD700; /* Gold Button */
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 0 1.2rem;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.ai-send-btn:hover {
+  background: #FF1493; /* Pink Hover */
+  color: #FFF;
+}
+
+/* --- SCROLLBAR --- */
+.ai-messages::-webkit-scrollbar {
+  width: 6px;
+}
+.ai-messages::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+  .ai-panel {
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px 12px 0 0;
+    height: 60vh;
+  }
+  .ai-trigger {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}

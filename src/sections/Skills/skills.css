@@ -1,0 +1,166 @@
+/* src/sections/Skills/skills.css */
+
+.skills-container {
+  padding: 6rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #050505; 
+  overflow: hidden;
+}
+
+.skills-content {
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* --- HEADER (Gold/Pink Gradient) --- */
+.skills-header {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  
+  background: linear-gradient(135deg, #FFD700 20%, #FF1493 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.3));
+}
+
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* --- CATEGORY TITLES (Polished Gradient) --- */
+.category-title {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 1px;
+  
+  /* Gradient Text for Categories too */
+  background: linear-gradient(to right, #FFFFFF, #B0B0B0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 2.5rem 1.5rem; /* More vertical gap */
+}
+
+/* --- THE CARD --- */
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  
+  /* Animation */
+  opacity: 0; 
+  animation: gather 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- THE GLORIFYING BORDER FRAME --- */
+.icon-frame {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* GLASS INTERIOR */
+  background: rgba(20, 20, 20, 0.8);
+  
+  /* THE GRADIENT BORDER TRICK */
+  /* This creates a perfect gradient ring around the circle */
+  border: 2px solid transparent;
+  background-image: linear-gradient(#151515, #151515), 
+                    linear-gradient(135deg, #FFD700, #FF1493);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  
+  /* Shadow to make it glow */
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* --- THE ICON (Colorful & Glowing) --- */
+.skill-icon {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  /* Neon Glow matching its own color */
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* --- HOVER EFFECTS --- */
+.skill-card:hover .icon-frame {
+  transform: translateY(-5px) scale(1.05);
+  /* Intense Glow on Hover */
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+  /* Switch border to pure Gold on hover */
+  background-image: linear-gradient(#151515, #151515), 
+                    linear-gradient(135deg, #FFD700, #FFD700);
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.1);
+  /* Increase neon intensity */
+  filter: drop-shadow(0 0 12px currentColor);
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 600; /* Increased weight slightly for visibility */
+  
+  /* CHANGED: Bright Sky Blue */
+  color: #4FC3F7; 
+  
+  font-family: monospace; /* Tech font */
+  margin-top: 0.8rem;
+  transition: all 0.3s ease;
+  
+  /* Slight Glow to make it pop against the black background */
+  text-shadow: 0 0 8px rgba(79, 195, 247, 0.4);
+}
+
+/* Hover Effect: Turns Pure White */
+.skill-card:hover .skill-name {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes gather {
+  0% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.5);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0) scale(1);
+    filter: blur(0);
+  }
+}

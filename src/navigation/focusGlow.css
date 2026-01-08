@@ -1,0 +1,48 @@
+/* src/navigation/focusGlow.css */
+
+.focus-glow-container {
+  position: fixed;
+  left: 3rem; /* Matches ChainNavigation left position */
+  top: 50%;   /* Matches ChainNavigation top position */
+  transform: translateY(-50%); /* Centers it exactly like the chain */
+  width: 2px; /* Thin visual anchor, invisible mostly */
+  height: 0;  /* Height determined by children */
+  z-index: 90; /* Below Chain (z-index 100) but above content */
+  pointer-events: none; /* Ignore clicks, pass them to chain */
+}
+
+.glow-orb {
+  position: absolute;
+  left: -20px; /* Adjust to center horizontally relative to text */
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(64, 156, 255, 0.6) 0%, rgba(64, 156, 255, 0) 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.5;
+  
+  /* Positioning Logic */
+  /* We calculate vertical position based on index relative to center */
+  /* Formula: (Index - 2) * (TextHeight + Gap) */
+  /* Assuming roughly 2.35rem step size based on previous CSS */
+  top: calc((var(--glow-index) - 2) * 2.35rem);
+  transform: translateY(-50%); /* Center orb on the calculated line */
+
+  /* The Animation: Smooth slide */
+  transition: top 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  
+  /* Optional: Very Slow Breathing */
+  animation: breathe 10s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: translateY(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateY(-50%) scale(1.2); }
+}
+
+/* Mobile: Hide Glow (Screen is too small for side nav mechanics) */
+@media (max-width: 768px) {
+  .focus-glow-container {
+    display: none;
+  }
+}

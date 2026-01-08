@@ -1,0 +1,188 @@
+/* src/sections/Experience/experience.css */
+
+/* --- CONTAINER --- */
+.experience-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #050505; /* Deep Polished Black */
+  overflow: hidden; /* Prevents scrollbars during animation */
+}
+
+.experience-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* --- HEADING --- */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  
+  /* Gold-to-Pink Gradient */
+  background: linear-gradient(135deg, #FFD700 20%, #FF1493 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.3));
+  
+  /* Animation for Title */
+  opacity: 0;
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+/* --- GRIDS --- */
+.grid-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.grid-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* --- CARD DESIGN --- */
+.exp-card {
+  background: #111111;
+  border: 1px solid rgba(255, 215, 0, 0.3); /* Gold Border */
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  
+  /* Initial State for Animation */
+  opacity: 0; 
+}
+
+/* HOVER EFFECT */
+.exp-card:hover {
+  transform: translateY(-5px);
+  border-color: #FFD700; /* Bright Gold */
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  background: #151515;
+}
+
+/* --- ANIMATION CLASSES --- */
+
+/* Slides from Left */
+.anim-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Slides from Right */
+.anim-right {
+  animation: slideInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Slides from Bottom */
+.anim-up {
+  animation: slideInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* --- KEYFRAMES --- */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(100px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- CARD TEXT STYLES --- */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-role {
+  color: #FFFFFF;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.card-date {
+  color: #FFD700; /* Gold */
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.card-org {
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.card-desc {
+  color: #FFFFFF; 
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+  .experience-section {
+    padding: 4rem 1rem; /* Reduced side padding */
+  }
+  
+  .section-title {
+    font-size: 1.8rem; /* Smaller Heading so it fits on one line */
+    margin-bottom: 3rem;
+  }
+
+  .grid-row-2,
+  .grid-row-3 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* Ensure cards don't touch the screen edges */
+  .exp-card {
+    padding: 1.5rem;
+  }
+}

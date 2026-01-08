@@ -1,0 +1,178 @@
+/* src/sections/About/about.css */
+
+/* --- CONTAINER --- */
+.about-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #050505; /* Deep Polished Black */
+  padding: 6rem 2rem;
+  overflow: hidden; /* Prevents scrollbars during slide-in */
+}
+
+/* --- ANIMATION: Slide In From Right --- */
+.about-content {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  
+  opacity: 0;
+  transform: translateX(100px); /* Start 100px to the right */
+  animation: slideInRight 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes slideInRight {
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+/* --- HEADER --- */
+.about-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.intro-statement {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 2.2rem;
+  color: #fff;
+  line-height: 1.3;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle Shine */
+}
+
+.highlight {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  
+  /* THEME: Polished Gold-to-Pink Gradient */
+  background: linear-gradient(135deg, #FFD700 20%, #FF1493 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* Shine Filter */
+  filter: drop-shadow(0 0 8px rgba(255, 20, 147, 0.3));
+}
+
+/* --- THE LADDER LAYOUT --- */
+.pillars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* --- THE PILLAR CARD (Polished Glass) --- */
+.pillar-card {
+  width: 65%;
+  min-width: 320px;
+  padding: 2.5rem 3rem;
+  
+  /* Shape */
+  border-radius: 60px;
+  
+  /* Material: Dark Glass */
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+/* HOVER: Brightens and Glows */
+.pillar-card:hover {
+  background: rgba(25, 25, 25, 1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(-10px); /* Move slightly LEFT to meet mouse */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* --- ACCENT BARS (The Theme Colors) --- */
+
+/* 1. Top Left - Gold */
+.pillar-card.accent-gold {
+  align-self: flex-start;
+  border-left: 4px solid #FFD700; /* Gold Bar */
+}
+.pillar-card.accent-gold:hover {
+  box-shadow: -5px 5px 20px rgba(255, 215, 0, 0.1); /* Gold Glow */
+}
+
+/* 2. Center - Silver/White */
+.pillar-card.accent-silver {
+  align-self: center;
+  border-left: 4px solid #FFFFFF; /* White Bar */
+}
+.pillar-card.accent-silver:hover {
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1); /* White Glow */
+}
+
+/* 3. Bottom Right - Pink */
+.pillar-card.accent-pink {
+  align-self: flex-end;
+  border-left: 4px solid #FF1493; /* Pink Bar */
+}
+.pillar-card.accent-pink:hover {
+  box-shadow: 5px 5px 20px rgba(255, 20, 147, 0.15); /* Pink Glow */
+}
+
+
+/* --- TEXT STYLES --- */
+.pillar-title {
+  font-size: 1.3rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.pillar-text {
+  /* CHANGED: Much brighter Platinum color */
+  color: #E5E5E5; 
+  
+  /* CHANGED: Increased weight slightly for legibility */
+  font-weight: 400; 
+  
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  
+  /* Optional: Tiny drop shadow to pop against the dark glass */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .pillar-card {
+    width: 100%;
+    border-radius: 20px;
+    align-self: center !important;
+    transform: none !important; /* Disable hover move on touch */
+  }
+  
+  .intro-statement {
+    font-size: 1.5rem;
+  }
+  .highlight {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+  }
+}
