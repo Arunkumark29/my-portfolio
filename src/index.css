@@ -1,3 +1,29 @@
+/* src/index.css */
+
+/* GLOBAL SCALE FIX FOR LAPTOPS */
+@media (max-width: 1440px) {
+  html {
+    /* Standard is 16px. Dropping to 14px scales the whole site down by 12.5% */
+    font-size: 14px; 
+  }
+}
+
+@media (max-width: 1280px) {
+  html {
+    /* For smaller laptops, scale down further */
+    font-size: 13px;
+  }
+}
+
+/* Ensure horizontal scroll doesn't happen */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #050505;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,4 +45,19 @@ html, body {
   padding: 0;
   /* Ensure background matches your darkest theme color */
   background-color: #050505; 
+}
+/* src/index.css */
+
+/* MOBILE SPACER FIX */
+@media (max-width: 768px) {
+  /* Select all your main section containers */
+  .projects-container, 
+  .experience-container, 
+  .contact-content, 
+  .about-container, /* assuming you have this class */
+  .skills-container /* assuming you have this class */
+  {
+    /* Adds 100px of invisible cushion at the bottom */
+    padding-bottom: 100px !important; 
+  }
 }
