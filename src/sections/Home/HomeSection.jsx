@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './home.css';
+import './Home.css';
 
 const HomeSection = ({ onStart }) => {
   const [isAssembled, setIsAssembled] = useState(false);
