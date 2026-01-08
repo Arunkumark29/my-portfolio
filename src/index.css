@@ -9,8 +9,9 @@
 
 html, body {
   width: 100%;
+  /* CRITICAL: Allows vertical scroll (y), prevents horizontal scroll (x) */
   overflow-x: hidden; 
-  background-color: #050505; 
+  background-color: #050505; /* Deep Black Background */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #fff;
 }
@@ -20,33 +21,32 @@ html, body {
   min-height: 100vh;
 }
 
-/* --- 2. LAPTOP SCALING FIX (Kept from previous steps) --- */
-@media (max-width: 1536px) { html { font-size: 14px; } }
-@media (max-width: 1366px) { html { font-size: 12px; } }
-@media (max-width: 1024px) { html { font-size: 11px; } }
-@media (max-width: 768px) { html { font-size: 16px; } }
+/* --- LAPTOP SCALING FIX (Aggressive) --- */
 
-/* --- 3. THE "SUPER SPACER" MOBILE FIX --- */
+/* Standard 15" Laptops */
+@media (max-width: 1536px) {
+  html {
+    font-size: 14px; 
+  }
+}
+
+/* 13" - 14" Laptops (The problem zone) */
+@media (max-width: 1366px) {
+  html {
+    font-size: 12px; /* Aggressive scale down */
+  }
+}
+
+/* Small Netbooks / Tablets in Landscape */
+@media (max-width: 1024px) {
+  html {
+    font-size: 11px; /* Maximum shrinkage */
+  }
+}
+
+/* Reset for Mobile (Phones need big text) */
 @media (max-width: 768px) {
-  
-  /* Target EVERY main container class you might have used */
-  .projects-container, 
-  .experience-container, 
-  .contact-content, 
-  .about-container, 
-  .skills-container,
-  .resume-container,
-  section, /* Catch-all for any generic section */
-  main     /* Catch-all for the main wrapper */
-  {
-    /* Force huge padding at the bottom.
-       This pushes the content UP so you can scroll 
-       until the buttons are clearly visible above the nav bar.
-    */
-    padding-bottom: 180px !important; 
-    
-    /* Ensure height allows scrolling */
-    height: auto !important; 
-    min-height: 100vh;
+  html {
+    font-size: 16px; 
   }
 }
