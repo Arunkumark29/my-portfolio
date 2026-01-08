@@ -218,7 +218,7 @@
   border-radius: 3px;
 }
 
-/* --- MOBILE RESPONSIVENESS (FIXED) --- */
+/* --- MOBILE RESPONSIVENESS (FIXED BUTTON HEIGHT) --- */
 @media (max-width: 768px) {
   
   /* 1. PANEL: Bottom Sheet Style */
@@ -226,27 +226,27 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    height: 60vh; /* 60% Height */
+    height: 60vh;
     border-radius: 16px 16px 0 0;
-    z-index: 205; /* Very High */
+    z-index: 205; 
     border-left: none;
     border-right: none;
     border-bottom: none;
   }
   
-  /* Minimized state on mobile */
   .ai-panel.minimized {
      height: 60px !important;
      bottom: 0;
   }
 
-  /* 2. TRIGGER BUTTON: Fixed at Bottom Right */
+  /* 2. TRIGGER BUTTON: MOVED HIGHER */
   .ai-trigger {
     right: 1.5rem;
-    bottom: 2rem; /* Keeps it in standard thumb position */
-    z-index: 210; /* HIGHEST: Always clickable above panel */
     
-    /* Slightly smaller for mobile */
+    /* CHANGED: 90px ensures it sits ABOVE the bottom nav bar */
+    bottom: 90px; 
+    
+    z-index: 210; /* HIGHEST Z-INDEX */
     width: 50px;
     height: 50px;
   }
