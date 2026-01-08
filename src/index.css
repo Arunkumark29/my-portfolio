@@ -1,63 +1,47 @@
 /* src/index.css */
 
-/* GLOBAL SCALE FIX FOR LAPTOPS */
-@media (max-width: 1440px) {
-  html {
-    /* Standard is 16px. Dropping to 14px scales the whole site down by 12.5% */
-    font-size: 14px; 
-  }
-}
-
-@media (max-width: 1280px) {
-  html {
-    /* For smaller laptops, scale down further */
-    font-size: 13px;
-  }
-}
-
-/* Ensure horizontal scroll doesn't happen */
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  background-color: #050505;
-}
-
+/* --- 1. GLOBAL RESET --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  color: #fff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-/* GLOBAL RESET: Prevents horizontal scroll from entrance animations */
 html, body {
-  overflow-x: hidden;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  /* Ensure background matches your darkest theme color */
-  background-color: #050505; 
+  /* CRITICAL: Allows vertical scroll (y), prevents horizontal scroll (x) */
+  overflow-x: hidden; 
+  background-color: #050505; /* Deep Black Background */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #fff;
 }
-/* src/index.css */
 
-/* MOBILE SPACER FIX */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* --- 2. LAPTOP SCALING FIX (The "Defaulty Big" Fix) --- */
+@media (max-width: 1440px) {
+  html {
+    font-size: 14px; /* Scales everything down 12.5% */
+  }
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 13px; /* Scales down further for small laptops */
+  }
+}
+
+/* --- 3. MOBILE SPACER FIX (The "Hidden Buttons" Fix) --- */
 @media (max-width: 768px) {
-  /* Select all your main section containers */
+  /* Adds invisible cushion at the bottom so Nav doesn't cover content */
   .projects-container, 
   .experience-container, 
   .contact-content, 
-  .about-container, /* assuming you have this class */
-  .skills-container /* assuming you have this class */
-  {
-    /* Adds 100px of invisible cushion at the bottom */
-    padding-bottom: 100px !important; 
+  .about-container, 
+  .skills-container {
+    padding-bottom: 120px !important; /* Increased slightly for safety */
   }
 }
