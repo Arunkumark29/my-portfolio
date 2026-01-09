@@ -168,23 +168,45 @@
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-  /* On mobile, usually better to hide iframe and rely on download button,
-     or show a simplified view. Keeping it hidden for layout safety. */
-  .pdf-wrapper { 
-    display: none; 
-  }
   
+  /* 1. Adjust Container to allow scrolling */
+  .resume-container {
+    height: auto;          /* Allow page to grow */
+    min-height: 100vh;     /* At least full screen */
+    padding-top: 6rem;     /* Space for top header */
+    padding-bottom: 120px; /* Space for bottom Nav Bar */
+    display: block;        /* Switch from flex to block for safer scrolling */
+  }
+
+  /* 2. Adjust Content Wrapper */
   .resume-content { 
     height: auto; 
-    justify-content: center;
-    padding-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
   }
-  
+
+  /* 3. SHOW THE PDF VIEWER (Fixed) */
+  .pdf-wrapper { 
+    display: block !important; /* Force it to show */
+    width: 100%;
+    
+    /* Mobile needs a specific height, otherwise it collapses to 0 */
+    height: 500px; 
+    
+    margin-top: 1rem;
+    box-shadow: 0 0 10px rgba(255, 20, 147, 0.2);
+  }
+
+  /* 4. Text Adjustments */
+  .section-title {
+    font-size: 2rem;
+  }
+
   .resume-desc::after {
-    content: " (Viewer optimized for Desktop)";
-    display: block;
-    font-size: 0.8rem;
-    color: #666;
-    margin-top: 0.5rem;
+    /* Optional: Remove the warning text since we are showing it now */
+    content: ""; 
+    display: none;
   }
 }

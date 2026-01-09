@@ -218,35 +218,47 @@
   border-radius: 3px;
 }
 
-/* --- MOBILE RESPONSIVENESS (FIXED BUTTON HEIGHT) --- */
+/* --- MOBILE RESPONSIVENESS (CENTERED FLOATING CARD) --- */
 @media (max-width: 768px) {
   
-  /* 1. PANEL: Bottom Sheet Style */
+  /* 1. PANEL: Floating Centered Card */
   .ai-panel {
-    width: 100%;
-    left: 0;
-    bottom: 0;
+    /* Make it a box, not a full sheet */
+    width: 92%; 
     height: 60vh;
-    border-radius: 16px 16px 0 0;
+    
+    /* CENTERING MAGIC */
+    left: 0;
+    right: 0;
+    margin: 0 auto; /* This centers it horizontally */
+    
+    /* Positioning */
+    bottom: 20px; /* Float slightly above the very bottom edge */
+    
+    /* Styling to look like a card */
+    border-radius: 12px; /* Round ALL corners */
     z-index: 205; 
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    
+    /* Restore borders (previously set to none) */
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   }
   
+  /* 2. Minimized State */
   .ai-panel.minimized {
      height: 60px !important;
-     bottom: 0;
+     bottom: 20px; /* Keep it floating */
+     width: 92%;   /* Keep width consistent */
   }
 
-  /* 2. TRIGGER BUTTON: MOVED HIGHER */
+  /* 3. TRIGGER BUTTON: Fixed Position */
   .ai-trigger {
     right: 1.5rem;
     
-    /* CHANGED: 90px ensures it sits ABOVE the bottom nav bar */
+    /* Keeps it above your bottom Nav Bar */
     bottom: 90px; 
     
-    z-index: 210; /* HIGHEST Z-INDEX */
+    z-index: 210; /* Ensures it sits ON TOP of the panel */
     width: 50px;
     height: 50px;
   }
