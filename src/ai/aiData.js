@@ -70,7 +70,7 @@ export const RESUME_DATA = [
   // --- 12. RESUME ---
   {
     keywords: ["resume", "cv", "download", "pdf", "file"],
-    response: "You can download his official Resume PDF directly from the 'RESUME' node on the left."
+    response: "Here is a quick summary of his Resume:\n\n• Education: BE. CSE at CIT (CGPA: 8.6)\n• Experience: Cisco Networking Intern & Research Intern (2 Publications)\n• Projects: Personal AI Assistant, Voice Calculator & Robotic Arm UI\n• Skills: C++, Java, Python, React.js, Node.js\n• Achievements: Solved 1100+ coding problems combined.\n\nFor the full detailed document, please Download the PDF or view it in the 'RESUME' section."
   },
 
   // --- 13. ABOUT ---
